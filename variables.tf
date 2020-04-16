@@ -1,5 +1,5 @@
 variable "name" {
-  description = "Name of identity"
+  description = "Name of the Keyvault"
 }
 
 variable "resource_group_name" {
@@ -17,6 +17,6 @@ variable "tags" {
 }
 
 variable "aks_principal_id" {
-  description = "AKS principal ID"
+  description = "AKS principal ID for the existing AKS cluster "
   type        = string
 }
