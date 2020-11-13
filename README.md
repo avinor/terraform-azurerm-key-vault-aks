@@ -9,7 +9,7 @@ Deployes a keyvault integrated with AKS bases on Azure identity and
 
 A simple example that deploys a keyvault using access_policies
 
-This example is using [tau](https:/github.com/avinor/tau) for deployment.
+This example is using [tau](https://github.com/avinor/tau) for deployment.
 ```
 module {
   source = "github.com/avinor/terraform-azurerm-key-vault-aks"
