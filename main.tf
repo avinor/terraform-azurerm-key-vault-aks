@@ -3,13 +3,14 @@ terraform {
 }
 
 provider "azurerm" {
-  version = "~>2.2.0"
+  version = "~> 2.35.0"
   features {}
 }
 
 module "keyvault" {
-  source  = "avinor/key-vault/azurerm"
-  version = "1.0.0"
+  source = "github.com/avinor/terraform-azurerm-key-vault"
+  //  source  = "avinor/key-vault/azurerm"
+  //  version = "1.0.0"
 
   name                = var.name
   location            = var.location
@@ -48,8 +49,6 @@ resource "azurerm_role_assignment" "msi" {
   role_definition_name = "Managed Identity Operator"
 }
 
-
-//AKS SP tilgang til msi
 resource "azurerm_role_assignment" "aks" {
   principal_id         = var.aks_principal_id
   scope                = azurerm_user_assigned_identity.identity.id
