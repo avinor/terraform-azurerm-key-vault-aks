@@ -25,6 +25,8 @@ module "keyvault" {
       storage_permissions     = ["get"]
     },
   ]
+
+  tags = var.tags
 }
 
 resource "azurerm_user_assigned_identity" "identity" {
