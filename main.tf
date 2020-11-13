@@ -7,16 +7,8 @@ provider "azurerm" {
   features {}
 }
 
-module "keyvault" {
-  source = "github.com/avinor/terraform-azurerm-key-vault"
-  //  source  = "avinor/key-vault/azurerm"
-  //  version = "1.0.0"
-
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-
-  access_policies = [
+locals {
+  msi_access_policy = [
     {
       object_id               = azurerm_user_assigned_identity.identity.principal_id
       secret_permissions      = ["get", "list"]
@@ -26,7 +18,26 @@ module "keyvault" {
     },
   ]
 
-  tags = var.tags
+  all_access_policies = concat(local.msi_access_policy, var.access_policies)
+}
+
+module "keyvault" {
+  source  = "avinor/key-vault/azurerm"
+  version = "1.1.0"
+
+  name                = var.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
+
+  sku_name                        = var.sku_name
+  enabled_for_deployment          = var.enabled_for_deployment
+  enabled_for_disk_encryption     = var.enabled_for_disk_encryption
+  enabled_for_template_deployment = var.enabled_for_template_deployment
+  soft_delete_retention_days      = var.soft_delete_retention_days
+  access_policies                 = local.all_access_policies
+  network_acls                    = var.network_acls
+  log_analytics_workspace_id      = var.log_analytics_workspace_id
+  tags                            = var.tags
 }
 
 resource "azurerm_user_assigned_identity" "identity" {
