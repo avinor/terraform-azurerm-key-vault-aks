@@ -23,7 +23,7 @@ locals {
 
 module "keyvault" {
   source  = "avinor/key-vault/azurerm"
-  version = "1.1.0"
+  version = "2.0.0"
 
   name                = var.name
   location            = var.location
@@ -36,7 +36,7 @@ module "keyvault" {
   soft_delete_retention_days      = var.soft_delete_retention_days
   access_policies                 = local.all_access_policies
   network_acls                    = var.network_acls
-  log_analytics_workspace_id      = var.log_analytics_workspace_id
+  diagnostics                     = var.diagnostics
   tags                            = var.tags
 }
 
