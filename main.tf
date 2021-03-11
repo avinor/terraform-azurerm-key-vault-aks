@@ -3,7 +3,7 @@ terraform {
 }
 
 provider "azurerm" {
-  version = "~> 2.35.0"
+  version = "~> 2.50.0"
   features {}
 }
 
@@ -23,7 +23,7 @@ locals {
 
 module "keyvault" {
   source  = "avinor/key-vault/azurerm"
-  version = "2.0.0"
+  version = "2.0.1"
 
   name                = var.name
   location            = var.location
