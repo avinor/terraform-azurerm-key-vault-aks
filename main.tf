@@ -66,4 +66,8 @@ resource "azurerm_role_assignment" "aks" {
   principal_id         = var.aks_principal_id
   scope                = azurerm_user_assigned_identity.identity.id
   role_definition_name = "Managed Identity Operator"
+
+  lifecycle {
+    ignore_changes = [scope]
+  }
 }
