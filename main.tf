@@ -28,7 +28,7 @@ locals {
 
 module "keyvault" {
   source  = "avinor/key-vault/azurerm"
-  version = "2.0.3"
+  version = "3.0.0"
 
   name                = var.name
   location            = var.location
