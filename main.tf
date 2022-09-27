@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 2.83.0"
+      version = "~> 3.24.0"
     }
   }
 }
@@ -16,10 +16,10 @@ locals {
   msi_access_policy = [
     {
       object_id               = azurerm_user_assigned_identity.identity.principal_id
-      secret_permissions      = ["get", "list"]
+      secret_permissions      = ["Get", "List"]
       certificate_permissions = []
       key_permissions         = []
-      storage_permissions     = ["get"]
+      storage_permissions     = ["Get"]
     },
   ]
 
@@ -28,7 +28,7 @@ locals {
 
 module "keyvault" {
   source  = "avinor/key-vault/azurerm"
-  version = "3.0.1"
+  version = "3.0.3"
 
   name                = var.name
   location            = var.location
