@@ -3,7 +3,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.24.0"
+      version = "~> 3.69.0"
     }
   }
 }
@@ -28,7 +28,7 @@ locals {
 
 module "keyvault" {
   source  = "avinor/key-vault/azurerm"
-  version = "3.0.3"
+  version = "v3.0.4"
 
   name                = var.name
   location            = var.location
